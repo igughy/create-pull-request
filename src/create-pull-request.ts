@@ -138,11 +138,8 @@ export async function createPullRequest(inputs: Inputs): Promise<void> {
     // https://github.com/peter-evans/create-pull-request/issues/633
     await git.exec(['config', '-l'])
     await git.exec(['remote', '-v'])
-    await git.exec(['remote', 'prune', branchRemoteName])
-    await git.exec(['remote', '-v'])
-    core.info(
-      `Git remoting stuff is done`
-    )
+    //await git.exec(['remote', 'prune', branchRemoteName])
+    //await git.exec(['remote', '-v'])
     core.endGroup()
 
     // Apply the branch suffix if set
