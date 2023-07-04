@@ -136,7 +136,13 @@ export async function createPullRequest(inputs: Inputs): Promise<void> {
     // deleted after being merged or closed. Without this the push using
     // '--force-with-lease' fails due to "stale info."
     // https://github.com/peter-evans/create-pull-request/issues/633
+    await git.exec(['config', '-l'])
+    await git.exec(['remote', '-v'])
     await git.exec(['remote', 'prune', branchRemoteName])
+    await git.exec(['remote', '-v'])
+    core.info(
+      `Git remoting stuff is done`
+    )
     core.endGroup()
 
     // Apply the branch suffix if set
